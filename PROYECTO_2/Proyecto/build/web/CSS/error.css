@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-may-2020, 20:38:08
+    Author     : VB
+*/
+
+#error{    
+  background:  #ffcc00;
+  color: black;
+  font-size: 20px;  
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 10px;
+  border-style: solid;
+  width: 500px;
+  margin-left: 38%;
+  margin-top: 50px;
+  padding: 12px;
+  text-align: center;  
+}
+
+
+

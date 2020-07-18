@@ -1,0 +1,227 @@
+create database proyecto;
+use proyecto;
+
+
+create table areas(
+id_area int not null primary key AUTO_INCREMENT,
+descripcion_area varchar(20) not null
+);
+
+create table aspirantes(
+dni_as varchar(8) not null primary key,
+id_postulacion int not null,
+nombres_as varchar(100) not null, 
+apellidos_as varchar(100) not null,
+direccion_as varchar(100) not null,
+distrito_as varchar(100) not null,
+correo_as varchar(100) not null,
+telefono_celular_as int not null,
+telefono_fijo_as int not null,
+fecha_nacimiento_as date not null,
+sexo_as char not null,
+hijos_as int not null,
+id_area int not null,
+cv_as varchar(100) not null
+);
+
+create table postulaciones(
+id_postulacion int not null primary key AUTO_INCREMENT,
+fecha_pos date not null,
+dni_pos varchar(11) not null
+);
+
+create table empleados(
+id_empleado int primary key not null  AUTO_INCREMENT,
+id_contrato int not null,
+dni varchar(11) not null,
+nombres varchar(100) not null, 
+apellidos varchar(100) not null,
+direccion varchar(100) not null,
+distrito varchar(100) not null,
+correo varchar(100) not null,
+telefono_celular int not null,
+telefono_fijo int not null,
+fecha_nacimiento date not null,
+sexo char not null,
+hijos int not null,
+id_area int not null
+);
+
+create table contratos(
+id_contrato int not null primary key AUTO_INCREMENT,
+dni_con varchar(8) not null,
+fecha_inicio_con date not null, 
+duracion_con int not null,
+fecha_fin_con date not null,
+area_con varchar(100) not null,
+cargo_con int not null,
+dias_trabajo_con varchar(100) not null,
+horario_con varchar(100) not null,
+sueldo_con decimal not null,
+asignacion_familiar_con decimal not null,
+cuenta_con varchar(100) not null,
+seguro_con varchar(100) not null
+);
+
+create table citas(
+id_cita int not null primary key AUTO_INCREMENT,
+dni_as varchar(8) not null,
+tipo_cita varchar(100) not null, 
+fecha_cita date not null,
+horario_cita varchar(100) not null,
+estado varchar(100) not null
+);
+
+create table hojas_desempleados(
+id_hoja int not null primary key AUTO_INCREMENT,
+id_empleado int not null,
+analista_des varchar(100) not null,
+tipo_analisis_des varchar(100) not null,
+observaciones_des varchar(500) not null,
+eficiencias_des varchar(500) not null,
+deficiencias_des varchar(500) not null,
+fecha_inicio_des date not null,
+duracion_des decimal not null,
+fecha_modificacion_des date not null
+);
+
+create table planillas(
+id_planilla int not null primary key AUTO_INCREMENT,
+id_empleado int not null,
+remuneracion_bruta_pla decimal not null,
+aporte_obligatorio_pla decimal not null,
+remuneracion_neta_pla decimal not null,
+dias_trabajados_pla decimal not null,
+dias_no_trabajados_pla decimal not null,
+pago_x_dia_pla decimal not null,
+descuento_faltas_pla decimal not null
+);
+
+create table login_data(
+id_empleado int not null primary key,
+usuario_log varchar(100) not null,
+clave_log varchar(100) not null,
+fecha_log date not null,
+estado_log int not null,
+rango_log int not null
+);
+
+create table informes(
+id_informe int not null primary key AUTO_INCREMENT,
+id_empleado int not null,
+comentarios_inf varchar(500) not null
+);
+
+create table asistencias(
+id_asistencia int not null primary key  AUTO_INCREMENT,
+id_asistencia_ayuda int not null,
+id_empleado int not null,
+justificacion_asi varchar(100) not null,
+cv_as varchar(100) not null
+);
+
+create table asistencia_ayuda(
+id_asistencia_ayuda int not null primary key  AUTO_INCREMENT,
+id_empleado int not null, 
+fecha_asis_ayu date not null,  
+descrip_asis int not null,  
+estado int not null
+);
+
+
+
+alter table asistencias add constraint fk_asistencias foreign key  (id_empleado) references empleados(id_empleado);
+alter table login_data add constraint fk_login_data foreign key  (id_empleado) references empleados(id_empleado);
+alter table informes add constraint fk_informe foreign key  (id_empleado) references empleados(id_empleado);
+alter table planillas add constraint fk_planillas foreign key  (id_empleado) references empleados(id_empleado);
+alter table hojas_desempleados add constraint fk_hojas_desempleados foreign key  (id_empleado) references empleados(id_empleado);
+alter table empleados add constraint fk_contratos foreign key  (id_contrato) references contratos(id_contrato);
+alter table aspirantes add constraint fk_aspirantes foreign key  (id_postulacion) references postulaciones(id_postulacion);
+alter table aspirantes add constraint fk_areas foreign key  (id_area) references areas(id_area);
+alter table asistencias add constraint fk_asistencia foreign key  (id_asistencia_ayuda) references asistencia_ayuda(id_asistencia_ayuda );
+
+
+
+insert into asistencia_ayuda values (null,1,"2020/06/25",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/25",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/25",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/24",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/24",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/24",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/23",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/23",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/22",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/22",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/22",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/22",0,0);
+insert into asistencia_ayuda values (null,1,"2020/06/22",0,0);
+insert into asistencia_ayuda values (null,2,"2020/06/25",1,0);
+insert into asistencia_ayuda values (null,2,"2020/06/24",2,0);
+insert into asistencia_ayuda values (null,2,"2020/06/23",2,1);
+insert into asistencia_ayuda values (null,2,"2020/06/23",1,1);
+insert into asistencia_ayuda values (null,2,"2020/06/22",1,1);
+insert into asistencia_ayuda values (null,2,"2020/06/22",2,1);
+
+insert into postulaciones values(null,"2020/07/11","72683235"); 
+insert into postulaciones values(null,"2020/07/11","72145124");
+insert into postulaciones values(null,"2020/07/11","72345124");
+insert into postulaciones values(null,"2020/07/11","72445124");
+insert into postulaciones values(null,"2020/07/11","72545124");
+insert into postulaciones values(null,"2020/07/11","72645124");
+insert into postulaciones values(null,"2020/07/11","72745124");
+insert into postulaciones values(null,"2020/07/11","72845124");
+insert into postulaciones values(null,"2020/07/11","72945124");
+insert into postulaciones values(null,"2020/07/11","73145124");
+insert into postulaciones values(null,"2020/07/11","74145124");
+
+insert into areas values (null,"RR.HH");
+insert into areas values (null,"Logistica");
+insert into areas values (null,"Contabilidad");
+insert into areas values (null,"Seguridad");
+insert into areas values (null,"Almacen");
+
+insert into aspirantes values ("72683235",1,"Manuel Alfredo Max","Rafael Paitan","Av.Los Olivos","Comas","manuelrafael2097@gmail.com",955339395,6480632,"1997/06/20",0,0,1,"CV.docx");
+insert into aspirantes values ("72145124",2,"Marcos Raul","Jarmaillo Ulises","Av.Los Olivos","Carabayllo","marcos@gmail.com",945786123,6457894,"2000/01/02",0,0,1,"CV.docx");
+insert into aspirantes values ("72345124",3,"Luis Alberto","Porras Castro","Av.Los Olivos","Surquillo","luisAlberto@outlook.com",945786123,6457894,"2001/01/10",0,1,1,"CV.docx"); 
+insert into aspirantes values ("72445124",4,"Luz Celeste","Ramirez Culla","Av.Alfonso Ugarte","Comas","celeste_luz@gmail.com",946786123,5457894,"1998/10/13",1,2,1,"CV.docx"); 
+insert into aspirantes values ("72545124",5,"Maria Rosario","Medrano Olivar","Av.Los Precursores","Lima","mariaRosario@hotmail.com",947786123,7457894,"1995/06/12",1,1,1,"CV.docx"); 
+insert into aspirantes values ("72645124",6,"Renato Alfonso","Rafael Paitan","Av.Tupac Amaru","Callao","RenarPaitan@gmail.com",948786123,5647894,"1994/08/11",0,3,1,"CV.docx"); 
+insert into aspirantes values ("72745124",7,"Junior","Paitan Cordoba","Av.EL Pinar","Miraflores","JuniorPaitan@gmail.com",949786123,7257894,"1991/09/15",0,2,1,"CV.docx"); 
+insert into aspirantes values ("72845124",8,"Jean Pierre","Fernandez Huaman","Av.Parque Roca","Comas","JeanPierre@gmail.com",955786123,6157894,"1985/02/20",0,1,1,"CV.docx"); 
+insert into aspirantes values ("72945124",9,"Jesus David","Acha Castillo","Av.Los Incas","Cieneguilla","JesusDavid@gmail.com",965786123,5457894,"2002/12/03",0,0,2,"CV.docx"); 
+insert into aspirantes values ("73145124",10,"Daniel","Huaripoma Alcidez","Av.Los Claveles","Surco","Daniel_HuariPoma@outlook.com",975786123,7157894,"1997/11/22",0,0,4,"CV.docx"); 
+insert into aspirantes values ("74145124",11,"Milagros Elizabeth","Paitan Miche","Av.El Olivar","Pueblo Libre","mila_Miche@hotmail.com",985786123,6257894,"1995/07/12",1,0,4,"CV.docx"); 
+
+insert into citas values(null,"72683235","entrevista","2020/07/13","8,0","2");
+insert into citas values(null,"72345124","entrevista","2020/07/13","8,0","2");
+insert into citas values(null,"72445124","entrevista","2020/07/13","9,0","2");
+insert into citas values(null,"72545124","entrevista","2020/07/13","10,0","2");
+insert into citas values(null,"72645124","entrevista","2020/07/13","11,0","2");
+insert into citas values(null,"72745124","entrevista","2020/07/13","7,0","2");
+insert into citas values(null,"72845124","entrevista","2020/07/13","12,0","2");
+insert into citas values(null,"72945124","entrevista","2020/07/13","13,0","0");
+insert into citas values(null,"73145124","entrevista","2020/07/13","14,0","0");
+
+insert into contratos values (null,"72683235","2020/07/18",12,"2021/07/18","RR.HH",0,"Lunes a Sabado","Mañana",2000,0,"145178561234","ProFuturo");
+insert into contratos values (null,"72345124","2020/07/18",22,"2021/07/18","RR.HH",1,"Lunes a Sabado","Mañana",1200,12,"133378561234","ProFuturo");
+insert into contratos values (null,"72445124","2020/07/18",17,"2021/07/18","RR.HH",1,"Lunes a Sabado","Mañana",1500,15,"144478561234","ProFuturo");
+insert into contratos values (null,"72545124","2020/07/18",10,"2021/07/18","RR.HH",1,"Lunes a Sabado","Mañana",1900,19,"155578561234","ProFuturo");
+insert into contratos values (null,"72645124","2020/07/18",12,"2021/07/18","RR.HH",0,"Lunes a Sabado","Mañana",1800,18,"166678561234","ProFuturo");
+insert into contratos values (null,"72745124","2020/07/18",24,"2021/07/18","RR.HH",0,"Lunes a Sabado","Mañana",1300,13,"177778561234","ProFuturo");
+insert into contratos values (null,"72845124","2020/07/18",12,"2021/07/18","RR.HH",1,"Lunes a Sabado","Mañana",1700,17,"199978561234","ProFuturo");
+
+insert into empleados values (null,1,"72683235","Manuel Alfredo Max","Rafael Paitan","Av.Los Olivos","Comas","manuelrafael2097@gmail.com",955339395,6480632,"1997/06/20",0,0,1);
+insert into empleados values (null,2,"72345124","Luis Alberto","Porras Castro","Av.Los Olivos","Surquillo","luisAlberto@outlook.com",945786123,6457894,"2001/01/10",0,0,1); 
+insert into empleados values (null,3,"72445124","Luz Celeste","Ramirez Culla","Av.Alfonso Ugarte","Comas","celeste_luz@gmail.com",946786123,5457894,"1998/10/13",1,0,1); 
+insert into empleados values (null,4,"72545124","Maria Rosario","Medrano Olivar","Av.Los Precursores","Lima","mariaRosario@hotmail.com",947786123,7457894,"1995/06/12",1,0,1); 
+insert into empleados values (null,5,"72645124","Renato Alfonso","Rafael Paitan","Av.Tupac Amaru","Callao","RenarPaitan@gmail.com",948786123,5647894,"1994/08/11",0,0,1); 
+insert into empleados values (null,6,"72745124","Junior","Paitan Cordoba","Av.EL Pinar","Miraflores","JuniorPaitan@gmail.com",949786123,7257894,"1991/09/15",0,0,1); 
+insert into empleados values (null,7,"72845124","Jean Pierre","Fernandez Huaman","Av.Parque Roca","Comas","JeanPierre@gmail.com",955786123,6157894,"1985/02/20",0,0,1); 
+
+insert into login_data values (1,"ManuelRafael","bba6cc2f11ac9b8d77b75c1c86b76929","2020/07/12","1","0");
+insert into login_data values (2,"LuisPorras","97a0e3f6c364c213bae6ee7b05ec78fc","2020/07/12","1","1");
+insert into login_data values (3,"LuzRamirez","f6184bd72b34d6cd017144cbe1efa361","2020/07/12","1","1");
+insert into login_data values (4,"MariaMedrano","a35ad1b6272f9ad6589de0828801c0c9","2020/07/12","1","1");
+insert into login_data values (5,"RenatoRafael","84d5014be747266c52a979d73deefbbf","2020/07/12","1","0");
+insert into login_data values (6,"JuniorPaitan","a4f96ea8f00c6877c28173808e573338","2020/07/12","1","0");
+insert into login_data values (7,"JeanFernandez","0adb6b893174f8c4693272babc7b8e36","2020/07/12","1","1");

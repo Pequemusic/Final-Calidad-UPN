@@ -1,0 +1,152 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url(../img/Fondo_BN.jpg);
+    background-size: cover;
+    height:100vh;
+    background-position: top center;
+}
+.box{
+    width: 350px;
+    padding:40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background:rgba(25,25,25,.8);
+    text-align: center;
+    border-radius: 24px;
+}
+.box h1{
+    color:white;
+    text-transform:uppercase;
+    font-weight: 500;
+}
+.box i{
+    color:white;
+}
+.box input[type="text"],.box input[type="password"]{
+    border:0;
+    background: none;
+    display:block;
+    margin:20px 10px;
+    text-align: center;
+    border: 2px Solid #cca300;
+    padding: 14px 10px;
+    width:200px;
+    outline: none;
+    color:white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+    width:280px;
+    border-color:#fecc00;
+}
+
+.box input[type="submit"]{
+    font-size: 1em;
+    font-weight: bold;
+    border:0;
+    background: none;
+    display:block;
+    margin:20px auto;
+    text-align: center;
+    border: 2px Solid #cca300;
+    padding: 14px 10px;
+    width:225px;
+    outline: none;
+    color:white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.box input[type="submit"]:hover,.btn:hover{
+    background-color: #fecc00;
+    border: 2px Solid #fecc00;
+    color:black;
+}
+
+.btn{
+    font-size: 1em;
+    font-weight: bold;
+    border:0;
+    background: none;
+    display:block;
+    margin:20px auto;
+    text-align: center;
+    border: 2px Solid #fecc00;
+    padding: 14px 10px;
+    width:200px;
+    outline: none;
+    color:white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.ocultar{
+    display:none;
+}
+
+.error{
+    padding: 10px 20px;
+    text-align: center;
+    color: #fecc00;
+    font-family: 'Oswald',sans-serif;
+    font-size: 1.2em;
+}
+
+.row{
+    display:flex;
+}
+
+.column_1{
+    display:block;
+    margin:auto;
+    flex: 10%;
+}
+
+.column_2{
+    display:block;
+    margin:auto;
+    flex: 80%;
+}
+
+.titulo{
+    font-family: 'Oswald', sans-serif;
+    color:white;
+    font-weight: bold;
+    font-size: 2em; 
+    text-transform: uppercase;
+    display: block;
+}
+
+.btn_izquierda{
+    font-family: 'Oswald', sans-serif;
+    background:rgba(25,25,25,.4);
+    font-size: 1.4em;
+    font-weight: bold;
+    border:0;
+    display:block;
+    text-align: center;
+    color: white;
+    padding: 10px 20px;
+    width:200px;
+    outline: none;
+    border-radius: 12px;
+    transition: 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top:10px;
+    margin-left: 10px;
+}
+
+.btn_izquierda:hover{
+    background-color: black;
+    color:#fecc00;
+}
